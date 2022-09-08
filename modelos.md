@@ -100,7 +100,7 @@
   cabecera: String,
   mensaje: String,
   tipo: String,
-  curso: Curso || null,
+  curso: Curso || null,****
   emisor: Usuario,
 }
 ```
