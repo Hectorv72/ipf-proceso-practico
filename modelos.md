@@ -32,7 +32,7 @@
 ```js
 {
   titulo: String,
-  tiempo: Number,
+  tiempo: Number, // Carga horaria
   cursos: Array<Curso>
   activo: Boolean
 }
@@ -57,7 +57,7 @@
     nombre: String
   },
   curso: Curso,
-  profesores: Array<Profesor>
+  profesores: Array<Persona>
   asistencia: Array<Asistencia>,
   periodo: Number, // 1er cuatrimestre o 2do
   duracion: Number,
