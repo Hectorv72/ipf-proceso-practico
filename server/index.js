@@ -1,7 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
-import { connectMongoDB } from './connections/mongodb.connection.js'
+import { connectMongoDB } from './src/connections/mongodb.connection.js'
 
 const app = express()
 const port = process.env.PORT || 4000
