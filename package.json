@@ -1,0 +1,23 @@
+{
+  "name": "ipf-practico-proceso",
+  "version": "1.0.0",
+  "description": "project launcher",
+  "main": "index.js",
+  "scripts": {
+    "server": "npm run dev --prefix server",
+    "dev": "concurrently \"npm run server\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hectorv72/ipf-proceso-practico.git"
+  },
+  "author": "Hector Valdez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hectorv72/ipf-proceso-practico/issues"
+  },
+  "homepage": "https://github.com/Hectorv72/ipf-proceso-practico#readme",
+  "devDependencies": {
+    "concurrently": "^7.4.0"
+  }
+}

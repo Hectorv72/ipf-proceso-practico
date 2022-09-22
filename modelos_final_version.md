@@ -1,7 +1,10 @@
+# MongoDB
+
 ## Modelos
+
 ---
 
-#### Usuarios
+### Usuarios
 
 ```js
 {
@@ -38,7 +41,7 @@
 }
 ```
 
-#### Modulos
+### Modulos
 
 ```js
 {
@@ -59,7 +62,8 @@
 }
 ```
 
-#### Inasistencias
+### Inasistencias
+
 ```js
 {
   fecha: Date,
@@ -71,7 +75,8 @@
 }
 ```
 
-#### Calificaciónes
+### Calificaciónes
+
 ```js
 {
   fecha: Date,
@@ -83,14 +88,14 @@
 }
 ```
 
-#### Posts
+### Posts
 
 ```js
 {
   cabecera: String,
   mensaje: String,
   tipo: String,
-  curso: Curso || **null**,
+  curso: Curso || null,
   emisor: Usuario,
 }
 ```
