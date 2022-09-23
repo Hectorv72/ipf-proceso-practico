@@ -12,11 +12,8 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
-    semi: [
-      2,
-      'always',
-    ],
-    quotes: [1, 'single'],
+    quotes: [1, "single"],
+    semi: [2, 'always'],
     camelcase: 'false',
   },
 };
