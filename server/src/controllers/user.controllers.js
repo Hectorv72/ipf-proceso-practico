@@ -1,5 +1,5 @@
 import { catchHandler } from "../utilities/general.utilities.js";
-import { getUsers, createNewUser, updateOneUser, deactivateOneUser } from "../utilities/user.utilities.js"
+import { getUsers, createNewUser, updateOneUser, deactivateOneUser, removeOneUser } from "../utilities/user.utilities.js"
 
 export const findUsers = async (_, res) => {
   try {
