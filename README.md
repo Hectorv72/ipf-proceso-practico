@@ -22,4 +22,7 @@
 - 3.1 22/09/22 Definición de librerías a utilizar para la creación inicial del backend - (express, express-validator, mongoose, morgan, cors, jsonwebtoken, bcryptjs, dotenv).  ✔
 - 3.2 22/09/22 Creación del proyecto base con express.  ✔
 - 3.3 22/09/22 Conexión con la base de datos de MongoDB.  ✔
-- 3.4 23/09/22 Creación del esquema de User para la BD.
+- 3.4 23/09/22 Creación del esquema de User para la BD.  ✔
+- 3.5 27/09/22 Creación de las rutas del Usuario(User).  ✔
+- 3.6 27/09/22 Creación de los controladores para el modelo de User.  ✔
+- 3.7 27/09/22 Creación de la lógica(utilities) para los controladores de Usuario(User).  ✔

@@ -16,7 +16,7 @@ const UserSchema = new Schema({
   type: { // Tipo de usuario
     type: String,
     enum: ['común', 'administrativo'],
-    required: true
+    default: 'común'
   },
   active: { // Verifica si el usuario fue eliminado de manera lógica
     type: Boolean,
@@ -49,7 +49,12 @@ const UserSchema = new Schema({
   }
 }, {
   timestamps: true,
-  versionKey: true,
+  versionKey: false,
 })
 
-export default User = model('user', UserSchema)
+UserSchema.methods.toJsonResponse = function () {
+  const { _id, password, ...user } = this._doc;
+  return user;
+}
+
+export default model('user', UserSchema)
