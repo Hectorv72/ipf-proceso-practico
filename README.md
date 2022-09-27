@@ -26,3 +26,4 @@
 - 3.5 27/09/22 Creación de las rutas del Usuario(User).  ✔
 - 3.6 27/09/22 Creación de los controladores para el modelo de User.  ✔
 - 3.7 27/09/22 Creación de la lógica(utilities) para los controladores de Usuario(User).  ✔
+- 3.8 27/09/22 Instalación e implementación de la librería Helmet.
