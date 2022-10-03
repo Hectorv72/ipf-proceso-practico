@@ -1,5 +1,7 @@
 import { Schema, model } from "mongoose";
 
+export const UserTypes = ['común', 'administrativo'];
+
 const UserSchema = new Schema({
   username: { // Nombre de usuario
     type: String,
@@ -15,7 +17,7 @@ const UserSchema = new Schema({
   },
   type: { // Tipo de usuario
     type: String,
-    enum: ['común', 'administrativo'],
+    enum: UserTypes,
     default: 'común'
   },
   active: { // Verifica si el usuario fue eliminado de manera lógica
@@ -54,7 +56,8 @@ const UserSchema = new Schema({
 
 UserSchema.methods.toJsonResponse = function () {
   const { _id, password, ...user } = this._doc;
+  user.id = _id;
   return user;
 }
 
-export default model('user', UserSchema)
+export default model('user', UserSchema);

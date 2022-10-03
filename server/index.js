@@ -1,9 +1,9 @@
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
+import helmet from 'helmet';
 import { connectMongoDB } from './src/connections/mongodb.connection.js';
 import userRoutes from './src/routes/user.routes.js';
-import helmet from 'helmet';
 
 const app = express();
 const port = process.env.PORT || 4000;
