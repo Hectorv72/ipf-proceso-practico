@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken'
 
-export const catchHandler = (error) => {
+export const catchHandler = (error, message) => {
+  console.log(`Error al ${message} =>`, error)
   return { status: 500, message: 'Ocurrió un error inesperado, vuelva a intentarlo más tarde' }
 }
 

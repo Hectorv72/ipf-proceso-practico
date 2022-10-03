@@ -4,48 +4,48 @@ export const UserTypes = ['común', 'administrativo'];
 
 const UserSchema = new Schema({
   username: { // Nombre de usuario
-    type: String,
+    type: Schema.Types.String,
     required: true
   },
   email: {
-    type: String,
+    type: Schema.Types.String,
     required: true
   },
   password: {
-    type: String,
+    type: Schema.Types.String,
     required: true
   },
   type: { // Tipo de usuario
-    type: String,
+    type: Schema.Types.String,
     enum: UserTypes,
     default: 'común'
   },
   active: { // Verifica si el usuario fue eliminado de manera lógica
-    type: Boolean,
+    type: Schema.Types.Boolean,
     default: true
   },
   personal_info: {
     names: {
-      type: String,
+      type: Schema.Types.String,
       required: true
     },
     surnames: {
-      type: String,
+      type: Schema.Types.String,
       required: true
     },
     date_birth: {
-      type: Date,
+      type: Schema.Types.Date,
       required: true
     },
     dni: {
-      type: String,
+      type: Schema.Types.String,
       required: true
     },
     documentation: [
       {
-        url: String,
-        file_name: String,
-        type: String
+        url: Schema.Types.String,
+        file_name: Schema.Types.String,
+        type: Schema.Types.String
       }
     ]
   }

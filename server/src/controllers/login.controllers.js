@@ -11,8 +11,7 @@ export const signInUser = async (req, res) => {
     const token = await createJwt(id);
     return res.status(200).json({ message: 'Bienvenido', user: { ...user, token } });
   } catch (error) {
-    console.log('Error al loguear el usuario => ', error)
-    const { status, message } = catchHandler(error);
+    const { status, message } = catchHandler(error, 'loguear el usuario');
     return res.status(status).json({ message });
   }
 }
@@ -24,8 +23,7 @@ export const signUpUser = async (req, res) => {
     const token = await createJwt(id);
     return res.status(201).json({ message: 'Usuario creado correctamente', user: { ...user, token } });
   } catch (e) {
-    console.log('Error al crear usuario => ', e);
-    const { status, message } = catchHandler(error);
+    const { status, message } = catchHandler(error, 'registrar usuario');
     return res.status(status).json({ message });
   }
 }

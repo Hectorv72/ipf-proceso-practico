@@ -34,10 +34,10 @@
 
 ```js
 {
-  carrera: String,
-  fecha: Date,
-  cupo: Number,
-  alumnos: Array<Usuario>
+  carrera: String, // career
+  fecha: Date, // date
+  cupo: Number, // capacity
+  alumnos: Array<Usuario> // students
 }
 ```
 

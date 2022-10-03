@@ -2,24 +2,24 @@ import User from '../models/user.model.js'
 import bcryptjs from 'bcryptjs'
 
 export const getUsers = async (filters) => {
-  const find_filters = {}
+  const find_filters = {};
   if (filters) {
-    const { username, email, type, active } = filters
+    const { username, email, type, active } = filters;
 
-    username && (find_filters.username = { '$regex': username })
-    email && (find_filters.email = email)
-    type && (find_filters.type = type)
-    active && (find_filters.active = active)
+    username && (find_filters.username = { '$regex': username });
+    email && (find_filters.email = email);
+    type && (find_filters.type = type);
+    active && (find_filters.active = active);
   }
-
-  return await User.find(find_filters)
-}
-
-export const getUserById = async (id) => {
-  const users = await User.findById(id);
+  const users = await User.find(find_filters);
   return users.map(
     user => user.toJsonResponse()
   );
+}
+
+export const getUserById = async (id) => {
+  const user = await User.findById(id);
+  return user.toJsonResponse();
 }
 
 export const createNewUser = async (data) => {
