@@ -1,4 +1,4 @@
-import { compareSync } from 'bcryptjs'
+import bcryptjs from 'bcryptjs'
 import User from '../models/user.model.js'
 
 // Login Middlewares
@@ -24,7 +24,7 @@ export const verifyUserPassword = async (req, res, next) => {
   try {
     const { user, password } = req.body
     // verifica la contraseña y el hash
-    const validation = compareSync(password, user.password)
+    const validation = bcryptjs.compareSync(password, user.password)
     if (validation) {
       const jsonUser = user.toJsonResponse();
       req.body = { user: jsonUser };

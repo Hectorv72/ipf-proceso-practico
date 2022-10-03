@@ -4,6 +4,7 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import { connectMongoDB } from './src/connections/mongodb.connection.js';
 import userRoutes from './src/routes/user.routes.js';
+import loginRoutes from './src/routes/login.routes.js'
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -17,6 +18,7 @@ app.use(cors());
 
 // routes
 app.use('/user', userRoutes);
+app.use('/auth', loginRoutes);
 
 // runner
 connectMongoDB();

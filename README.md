@@ -23,6 +23,7 @@
 - 3.6 27/09/22 Creación de los controladores para el modelo de User.  ✔
 - 3.7 27/09/22 Creación de la lógica(utilities) para los controladores de Usuario(User).  ✔
 - 3.8 27/09/22 Instalación e implementación de la librería Helmet.
-- 3.9 02/09/22 Creación de los controladores para el Login del usuario
-- 3.10 02/10/22 Creación de middlewares para las rutas de usuario y login
-- 3.11 02/10/22 Creación de esquema de validaciones con express-validator para el usuario
+- 3.9 02/09/22 Creación de los controladores para el Login del usuario.
+- 3.10 02/10/22 Creación de middlewares para las rutas de usuario y login.
+- 3.11 02/10/22 Creación de esquema de validaciones con express-validator para el usuario.
+- 3.12 02/10/22 Creación de las rutas de login y registro.
