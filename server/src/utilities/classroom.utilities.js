@@ -1,6 +1,6 @@
-import Class from "../models/class.model.js";
+import Classroom from "../models/classroom.model.js";
 
-export const getClasses = async (filters) => {
+export const getClassrooms = async (filters) => {
   const find_filters = {}
   if (filters) {
     const { career, capacity } = filters
@@ -9,28 +9,28 @@ export const getClasses = async (filters) => {
     capacity && (find_filters.capacity = capacity)
   }
 
-  return await Class.find(find_filters).populate({
+  return await Classroom.find(find_filters).populate({
     path: 'students',
     select: '_id username email active personal_info'
   })
 }
 
-export const getClassById = async (id) => {
-  return await Class.findById(id).populate({
+export const getClassroomById = async (id) => {
+  return await Classroom.findById(id).populate({
     path: 'students',
     select: '_id username email active personal_info'
   });
 }
 
-export const createNewClass = async (data) => {
+export const createNewClassroom = async (data) => {
   const { career, date, capacity, students } = data;
 
-  const _class = new Class({ career, date, capacity, students });
+  const _class = new Classroom({ career, date, capacity, students });
   await _class.save();
   return _class;
 }
 
-export const updateOneClass = async (data) => {
+export const updateOneClassroom = async (data) => {
   const { career, date, capacity, students, id } = data;
   const update = {};
 
@@ -41,12 +41,12 @@ export const updateOneClass = async (data) => {
 
   // Verifica que exista alguna modificación para realizar
   if (Object.entries(update).length > 0) {
-    return await Class.findByIdAndUpdate(id, update, { new: true });
+    return await Classroom.findByIdAndUpdate(id, update, { new: true });
   } else {
     return null;
   }
 }
 
-export const removeOneClass = async (id) => {
-  return await Class.findByIdAndDelete(id);
+export const removeOneClassroom = async (id) => {
+  return await Classroom.findByIdAndDelete(id);
 }

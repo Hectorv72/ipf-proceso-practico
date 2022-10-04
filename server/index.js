@@ -5,7 +5,8 @@ import helmet from 'helmet';
 import { connectMongoDB } from './src/connections/mongodb.connection.js';
 import userRoutes from './src/routes/user.routes.js';
 import loginRoutes from './src/routes/login.routes.js';
-import classRoutes from './src/routes/class.routes.js';
+import subjectRoutes from './src/routes/subject.routes.js';
+import classroomRoutes from './src/routes/classroom.routes.js';
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -20,7 +21,8 @@ app.use(cors());
 // routes
 app.use('/auth', loginRoutes);
 app.use('/user', userRoutes);
-app.use('/class', classRoutes);
+app.use('/class', classroomRoutes);
+app.use('/subject', subjectRoutes);
 
 // runner
 connectMongoDB();

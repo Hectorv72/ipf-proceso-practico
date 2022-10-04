@@ -1,0 +1,18 @@
+{
+  "name": "Programación IV",
+  "classroom": "633b3659c50841b1b279ea81",
+  "teachers": [
+    "63334af9b6c41ef5e9f9c043"
+  ],
+  "term": "4to trimestre",
+  "duration": 300,
+  "schedules": [
+    {
+      "day": "Lunes",
+      "timetable": {
+        "start": "14:00",
+        "end": "17:00"
+      }
+    }
+  ]
+}

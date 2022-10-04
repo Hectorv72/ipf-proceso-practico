@@ -4,7 +4,7 @@
 
 ---
 
-### Usuarios
+### Usuarios (user)
 
 ```js
 {
@@ -30,7 +30,7 @@
 }
 ```
 
-### Cursos
+### Cursos (class)
 
 ```js
 {
@@ -41,36 +41,35 @@
 }
 ```
 
-### Modulos
+### Modulos (subject)
 
 ```js
 {
-  materia: String,
-  curso: Curso,
-  profesores: [
+  materia: String, // (name)
+  curso: Curso, // class
+  profesores: [ // teachers
     { profesor: Usuario, tipo: String }
   ]
-  periodo: Number, // 1er cuatrimestre o 2do
-  duracion: Number, // Carga horaria
-  clases: [{
-      dia: String,
-      horario: {
-        inicio: String,
-        fin: String,
+  periodo: Number, // 1er cuatrimestre o 2do // term
+  duracion: Number, // Carga horaria //duration
+  clases: [{ //schedules
+      dia: String, // day
+      horario: { // timetable
+        inicio: String, // start
+        fin: String, // end
       }
   }]
 }
 ```
 
-### Inasistencias
+### Inasistencias (absences)
 
 ```js
 {
-  fecha: Date,
-  modulo: Modulo,
-  alumnos: [{
-    alumno: Usuario,
-    presencia: Boolean
+  fecha: Date, // date
+  modulo: Modulo, // subject
+  alumnos: [{ // students
+    alumno: Usuario, // student
   }]
 }
 ```

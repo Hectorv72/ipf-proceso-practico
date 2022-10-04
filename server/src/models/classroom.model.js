@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 
-const ClassSchema = new Schema({
+const ClassroomSchema = new Schema({
   career: {
     type: Schema.Types.String,
     required: true
@@ -19,4 +19,4 @@ const ClassSchema = new Schema({
   }]
 })
 
-export default model('Class', ClassSchema);
+export default model('Classroom', ClassroomSchema);
