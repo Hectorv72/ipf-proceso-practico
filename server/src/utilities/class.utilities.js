@@ -9,20 +9,17 @@ export const getClasses = async (filters) => {
     capacity && (find_filters.capacity = capacity)
   }
 
-  const classes = await Class.find(find_filters).populate('students._id')
-  const prob = { ...classes }.map(
-    _class => {
-      _class.students = _class.students.map(
-        student => { return student._id }
-      );
-      return _class
-    }
-  )
-  return prob
+  return await Class.find(find_filters).populate({
+    path: 'students',
+    select: '_id username email active personal_info'
+  })
 }
 
 export const getClassById = async (id) => {
-  return await Class.findById(id);
+  return await Class.findById(id).populate({
+    path: 'students',
+    select: '_id username email active personal_info'
+  });
 }
 
 export const createNewClass = async (data) => {

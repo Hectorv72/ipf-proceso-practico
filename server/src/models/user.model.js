@@ -60,4 +60,4 @@ UserSchema.methods.toJsonResponse = function () {
   return user;
 }
 
-export default model('user', UserSchema);
+export default model('User', UserSchema);

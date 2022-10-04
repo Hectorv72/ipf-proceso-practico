@@ -27,3 +27,6 @@
 - 3.10 02/10/22 Creación de middlewares para las rutas de usuario y login.
 - 3.11 02/10/22 Creación de esquema de validaciones con express-validator para el usuario.
 - 3.12 02/10/22 Creación de las rutas de login y registro.
+- 3.13 03/10/22 Creacion de modelo para los cursos(class)
+- 3.14 03/10/22 Construcción de controladores y rutas para el manejo del modelo de cursos(class)
+- 3.15 03/10/22 Creación de schema y middlewares para validación y seguridad de las peticiones de las rutas de curso(class)

@@ -13,14 +13,10 @@ const ClassSchema = new Schema({
     type: Schema.Types.Number,
     required: true
   },
-  students: [
-    {
-      _id: {
-        type: Schema.Types.ObjectId,
-        ref: 'user'
-      }
-    }
-  ]
+  students: [{
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  }]
 })
 
-export default model('class', ClassSchema);
+export default model('Class', ClassSchema);
