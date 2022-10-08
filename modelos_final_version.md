@@ -74,7 +74,7 @@
 }
 ```
 
-### Calificaciónes
+### Calificaciónes (grade)
 
 ```js
 {
