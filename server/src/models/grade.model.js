@@ -32,4 +32,4 @@ const ClassroomSchema = new Schema({
   }
 })
 
-export default model('Classroom', ClassroomSchema);
+export default model('Grade', ClassroomSchema);

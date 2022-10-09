@@ -8,6 +8,8 @@ import loginRoutes from './src/routes/login.routes.js';
 import subjectRoutes from './src/routes/subject.routes.js';
 import classroomRoutes from './src/routes/classroom.routes.js';
 import absenceRoutes from './src/routes/absence.routes.js';
+import gradeRoutes from './src/routes/grade.routes.js';
+import postRoutes from './src/routes/post.routes.js';
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -22,9 +24,11 @@ app.use(cors());
 // routes
 app.use('/auth', loginRoutes);
 app.use('/user', userRoutes);
-app.use('/class', classroomRoutes);
+app.use('/classroom', classroomRoutes);
 app.use('/subject', subjectRoutes);
 app.use('/absence', absenceRoutes);
+app.use('/grade', gradeRoutes);
+app.use('/post', postRoutes);
 
 // runner
 connectMongoDB();

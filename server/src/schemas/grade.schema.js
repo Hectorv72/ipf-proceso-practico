@@ -1,5 +1,5 @@
 import { body, check } from 'express-validator'
-import { gradeTypes } from '../models/grade.model';
+import { gradeTypes } from '../models/grade.model.js';
 
 // Schema de verifiacion de existencia
 
