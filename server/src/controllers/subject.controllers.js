@@ -49,3 +49,11 @@ export const deleteSubject = async (req, res) => {
     return res.status(status).json({ message });
   }
 }
+
+// export const clearAllSubjects = async (req, res) => {
+//   try {
+//     await Subject
+//   } catch (error) {
+    
+//   }
+// }

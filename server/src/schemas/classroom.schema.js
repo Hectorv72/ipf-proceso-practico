@@ -5,6 +5,7 @@ import { body, check } from 'express-validator'
 const checksRequired = [
   { key: 'career', msg: 'El nombre de la carrera es requerido' },
   { key: 'capacity', msg: 'El cupo de alumnos es requerido' },
+  { key: 'date', msg: 'La fecha de inicio de la cursada es requerida' },
 ];
 
 export const RequiredSchema = checksRequired.map(

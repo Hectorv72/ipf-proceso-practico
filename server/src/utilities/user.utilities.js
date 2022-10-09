@@ -1,5 +1,6 @@
 import User from '../models/user.model.js'
 import bcryptjs from 'bcryptjs'
+import { faker } from '@faker-js/faker';
 
 export const getUsers = async (filters) => {
   const find_filters = {};
@@ -11,15 +12,11 @@ export const getUsers = async (filters) => {
     type && (find_filters.type = type);
     active && (find_filters.active = active);
   }
-  const users = await User.find(find_filters);
-  return users.map(
-    user => user.toJsonResponse()
-  );
+  return await User.find(find_filters);
 }
 
 export const getUserById = async (id) => {
-  const user = await User.findById(id);
-  return user.toJsonResponse();
+  return await User.findById(id);
 }
 
 export const createNewUser = async (data) => {
@@ -30,7 +27,7 @@ export const createNewUser = async (data) => {
 
   const user = new User({ username, password, email, type, personal_info });
   await user.save();
-  return user.toJsonResponse();
+  return user
 }
 
 export const updateOneUser = async (data) => {
@@ -45,8 +42,7 @@ export const updateOneUser = async (data) => {
 
   // Verifica que exista alguna modificación para realizar
   if (Object.entries(update).length > 0) {
-    const user = await User.findByIdAndUpdate(id, update, { new: true });
-    return user;
+    return await User.findByIdAndUpdate(id, update, { new: true });
   } else {
     return null;
   }
@@ -58,4 +54,36 @@ export const deactivateOneUser = async (id) => {
 
 export const removeOneUser = async (id) => {
   return await User.findByIdAndDelete(id);
+}
+
+export const clearUsers = async () => {
+  return await User.deleteMany();
+}
+
+export const generateRandomUser = async () => {
+  const sex = faker.name.sex()
+  const names = faker.name.firstName(sex);
+  const surnames = faker.name.lastName(sex);
+
+  return ({
+    username: faker.internet.userName(names, surnames),
+    email: faker.internet.email(names, surnames),
+    password: faker.internet.password(),
+    personal_info: {
+      names,
+      surnames,
+      date_birth: faker.date.birthdate({ min: 18, max: 65, mode: 'age' }),
+      dni: faker.random.numeric(8),
+    }
+  })
+}
+
+export const generateRandomUsers = async (count) => {
+  const listUsers = []
+  for (let loop = 0; loop < count; loop++) {
+    const random = await generateRandomUser();
+    const user = await createNewUser(random);
+    listUsers.push(user);
+  }
+  return listUsers
 }
