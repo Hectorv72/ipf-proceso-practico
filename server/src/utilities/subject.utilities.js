@@ -1,4 +1,7 @@
+import subjectCollection from "../collections/subject.collection.js";
 import Subject from "../models/subject.model.js";
+import { randomItem, randomNumber } from "./general.utilities.js";
+import { getRandomUsers } from "./user.utilities.js";
 
 export const getSubjects = async (filters) => {
   const find_filters = {}
@@ -13,7 +16,7 @@ export const getSubjects = async (filters) => {
       select: '_id username email active personal_info'
     })
     .populate({
-      path: 'teachers',
+      path: 'teachers.teacher',
       select: 'id username email active personal_info'
     })
 }
@@ -25,9 +28,13 @@ export const getSubjectById = async (id) => {
       select: '_id username email active personal_info'
     })
     .populate({
-      path: 'teachers',
+      path: 'teachers.teacher',
       select: 'id username email active personal_info'
     })
+}
+
+export const getRandomSubjects = async (size) => {
+  return await Subject.aggregate([{ $sample: { size } }])
 }
 
 export const createNewSubject = async (data) => {
@@ -56,4 +63,36 @@ export const updateOneSubject = async (data) => {
 
 export const removeOneSubject = async (id) => {
   return await Subject.findByIdAndDelete(id);
+}
+
+export const clearSubjects = async () => {
+  return await Subject.deleteMany();
+}
+
+export const generateRandomSubject = async () => {
+  const name = randomItem(subjectCollection);
+
+  // obtiene a los usuarios que seran los maestros
+  const teachers = (await getRandomUsers(randomNumber(2, 3))).map(
+    teacher => ({ teacher: teacher._id, type: 'ayudante' })
+  )
+
+  // asigna a un usuario como jefe de catedra
+  teachers[(randomNumber(0, teachers.length))].type = 'jefe';
+
+  return ({
+    name,
+    teachers
+  })
+}
+
+export const generateRandomSubjects = async (count) => {
+  const listSubjects = []
+
+  for (let loop = 0; loop < count; loop++) {
+    const random = await generateRandomSubject();
+    const subject = await createNewSubject(random);
+    listSubjects.push(subject);
+  }
+  return listSubjects
 }

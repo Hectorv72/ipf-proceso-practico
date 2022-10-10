@@ -15,9 +15,9 @@ const ClassroomSchema = new Schema({
     type: Schema.Types.String,
     required: true
   },
-  classroom: {
+  career: {
     type: Schema.Types.ObjectId,
-    ref: 'Classroom',
+    ref: 'Career',
     default: undefined
   },
   sender: {

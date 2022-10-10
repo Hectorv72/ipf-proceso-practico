@@ -22,7 +22,7 @@ export const getUsers = async (filters) => {
   });
 }
 
-export const getUserById = async (id) => {
+export const getUserById = async (id,) => {
   return await User.findById(id).populate({
     path: 'absences',
     select: 'date career subject',
@@ -33,8 +33,8 @@ export const getUserById = async (id) => {
   });
 }
 
-export const getRandomUser = async () => {
-  return (await User.aggregate([{ $sample: { size: 1 } }]))[0]
+export const getRandomUsers = async (size = 5) => {
+  return await User.aggregate([{ $sample: { size } }])
 }
 
 export const createNewUser = async (data) => {
@@ -98,6 +98,7 @@ export const generateRandomUser = async () => {
 
 export const generateRandomUsers = async (count) => {
   const listUsers = []
+
   for (let loop = 0; loop < count; loop++) {
     const random = await generateRandomUser();
     const user = await createNewUser(random);

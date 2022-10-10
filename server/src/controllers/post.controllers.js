@@ -1,4 +1,4 @@
-import { createNewPost, getPosts, removeOnePost, updateOnePost } from "../utilities/post.utilities.js";
+import { clearPosts, createNewPost, generateRandomPosts, getPosts, removeOnePost, updateOnePost } from "../utilities/post.utilities.js";
 import { catchHandler } from "../utilities/general.utilities.js";
 
 export const findPosts = async (req, res) => {
@@ -46,6 +46,34 @@ export const deletePost = async (req, res) => {
     }
   } catch (error) {
     const { status, message } = catchHandler(error, 'eliminar post');
+    return res.status(status).json({ message });
+  }
+}
+
+export const clearAllPosts = async (req, res) => {
+  try {
+    await clearPosts();
+    return res.status(200).json({ message: 'Todos los posts se eliminaron satisfactoriamente' })
+  } catch (error) {
+    const { status, message } = catchHandler(error, 'remover todos los posts');
+    return res.status(status).json({ message });
+  }
+}
+
+export const factoryPosts = async (req, res) => {
+  try {
+    // Setea la cantidad de veces que generaran carreras
+    let count = 50;
+    const { vol } = req.body
+    vol && (count = parseInt(vol))
+
+    const posts = await generateRandomPosts(count)
+    res.status(200).json({
+      message: `Se han generado ${count} Posts`,
+      posts
+    })
+  } catch (error) {
+    const { status, message } = catchHandler(error, 'generar random posts');
     return res.status(status).json({ message });
   }
 }

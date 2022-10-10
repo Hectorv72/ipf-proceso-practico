@@ -5,6 +5,14 @@ const SubjectSchema = new Schema({
     type: Schema.Types.String,
     required: true
   },
+  duration: {
+    type: Schema.Types.Number,
+    required: true
+  },
+  date: {
+    type: Schema.Types.Date,
+    required: true
+  },
   classrooms: [{
     date: {
       type: Schema.Types.Date,
@@ -37,6 +45,8 @@ const SubjectSchema = new Schema({
       }]
     }]
   }]
+}, {
+  versionKey: false,
 })
 
 export default model('Career', SubjectSchema);

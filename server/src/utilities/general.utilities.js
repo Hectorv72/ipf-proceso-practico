@@ -32,3 +32,15 @@ export const createJwt = (id) => {
     });
   }
 };
+
+export const randomItem = (list = []) => {
+  return list[Math.floor(Math.random() * list.length)]
+}
+
+export const randomNumber = (min, max) => {
+  return Math.floor(Math.random() * (max - min) + min);
+}
+
+export const randomBoolean = () => {
+  return 1 === randomNumber(1, 3);
+}

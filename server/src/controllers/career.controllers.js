@@ -1,4 +1,4 @@
-import { createNewCareer, getCareers, removeOneCareer, updateOneCareer } from "../utilities/career.utilities.js";
+import { clearCareers, createNewCareer, generateRandomCareers, getCareers, removeOneCareer, updateOneCareer } from "../utilities/career.utilities.js";
 import { catchHandler } from "../utilities/general.utilities.js";
 
 export const findCareers = async (req, res) => {
@@ -46,6 +46,34 @@ export const deleteCareer = async (req, res) => {
     }
   } catch (error) {
     const { status, message } = catchHandler(error, 'eliminar carrera');
+    return res.status(status).json({ message });
+  }
+}
+
+export const clearAllCareers = async (req, res) => {
+  try {
+    await clearCareers();
+    return res.status(200).json({ message: 'Todas las carreras se eliminaron satisfactoriamente' })
+  } catch (error) {
+    const { status, message } = catchHandler(error, 'remover todas las carreras');
+    return res.status(status).json({ message });
+  }
+}
+
+export const factoryCareers = async (req, res) => {
+  try {
+    // Setea la cantidad de veces que generaran carreras
+    let count = 50;
+    const { vol } = req.body
+    vol && (count = parseInt(vol))
+
+    const careers = await generateRandomCareers(count)
+    res.status(200).json({
+      message: `Se han generado ${count} Carreras`,
+      careers
+    })
+  } catch (error) {
+    const { status, message } = catchHandler(error, 'generar random carreras');
     return res.status(status).json({ message });
   }
 }

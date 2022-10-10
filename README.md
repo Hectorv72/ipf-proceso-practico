@@ -47,9 +47,15 @@
 - 3.30 09/10/22 Creación del controlador para generar Usuarios random en la bd
 
 #### 4. Refactorizacion del backend
-- 4.1 10/10/2022 Se modificó el modelo de usuario para agregar las inasistencias
-- 4.2 10/10/2022 Se modificó el modelo de materias, asignando un atributo que contendra una lista de tareas(practicos) para guardar las calificaciones de los alumnos asignados a la tarea.
-- 4.3 10/10/2022 Se agregó un nuevo modelo de carreras que contendra los cursos y las materias designadas por año y el calendario de las materias para la carrera.
+- 4.1 10/10/22 Se modificó el modelo de usuario para agregar las inasistencias
+- 4.2 10/10/22 Se modificó el modelo de materias, asignando un atributo que contendra una lista de tareas(practicos) para guardar las calificaciones de los alumnos asignados a la tarea.
+- 4.3 10/10/22 Se agregó un nuevo modelo de carreras que contendra los cursos y las materias designadas por año y el calendario de las materias para la carrera.
 - 4.5 10/10/2002 Se creó los controladores, rutas, middlewares y esquema del modelo Carrera.
 
 #### 5. Avances del backend
+- 5.1 10/10/22 Creación de un controlador para generar carreras aleatorias
+- 5.2 10/10/22 Creación del controlador para eliminar todas las carreras de la bd
+- 5.3 10/10/22 Creación de un controlador para generar materias aleatorias
+- 5.4 10/10/22 Creación del controlador para eliminar todas las materias de la bd
+- 5.5 10/10/22 Creación de un controlador para generar posts aleatorios
+- 5.6 10/10/22 Creación del controlador para eliminar todos los posts de la bd

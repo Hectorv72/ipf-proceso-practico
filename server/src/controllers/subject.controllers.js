@@ -1,4 +1,4 @@
-import { createNewSubject, getSubjects, removeOneSubject, updateOneSubject } from "../utilities/subject.utilities.js";
+import { clearSubjects, createNewSubject, generateRandomSubjects, getSubjects, removeOneSubject, updateOneSubject } from "../utilities/subject.utilities.js";
 import { catchHandler } from "../utilities/general.utilities.js";
 
 export const findSubjects = async (req, res) => {
@@ -50,10 +50,30 @@ export const deleteSubject = async (req, res) => {
   }
 }
 
-// export const clearAllSubjects = async (req, res) => {
-//   try {
-//     await Subject
-//   } catch (error) {
-    
-//   }
-// }
+export const clearAllSubjects = async (req, res) => {
+  try {
+    await clearSubjects();
+    return res.status(200).json({ message: 'Todas las carreras se eliminaron satisfactoriamente' })
+  } catch (error) {
+    const { status, message } = catchHandler(error, 'remover todas las carreras');
+    return res.status(status).json({ message });
+  }
+}
+
+export const factorySubjects = async (req, res) => {
+  try {
+    // Setea la cantidad de veces que generaran carreras
+    let count = 50;
+    const { vol } = req.body
+    vol && (count = parseInt(vol))
+
+    const subjects = await generateRandomSubjects(count)
+    res.status(200).json({
+      message: `Se han generado ${count} Materias`,
+      subjects
+    })
+  } catch (error) {
+    const { status, message } = catchHandler(error, 'generar random materias');
+    return res.status(status).json({ message });
+  }
+}

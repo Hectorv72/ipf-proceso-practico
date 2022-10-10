@@ -1,5 +1,5 @@
 import { catchHandler } from "../utilities/general.utilities.js";
-import { getUsers, createNewUser, updateOneUser, deactivateOneUser, removeOneUser, clearUsers, generateRandomUsers, getRandomUser } from "../utilities/user.utilities.js"
+import { getUsers, createNewUser, updateOneUser, deactivateOneUser, removeOneUser, clearUsers, generateRandomUsers, getRandomUsers } from "../utilities/user.utilities.js"
 
 export const findUsers = async (req, res) => {
   try {
@@ -15,7 +15,7 @@ export const findUsers = async (req, res) => {
 
 export const findRandomUser = async (req, res) => {
   try {
-    const user = await getRandomUser();
+    const user = await getRandomUsers(1)[0];
     return res.status(200).json({ message: 'Busqueda de usuario realizada correctamente', user });
   } catch (error) {
     const { status, message } = catchHandler(error, 'buscar usuario random');

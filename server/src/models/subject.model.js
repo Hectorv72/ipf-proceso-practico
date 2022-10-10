@@ -1,14 +1,23 @@
 import { Schema, model } from "mongoose";
 
+const teacherTypes = ['jefe', 'ayudante']
+
 const SubjectSchema = new Schema({
   name: {
     type: Schema.Types.String,
     required: true
   },
   teachers: [{
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
+    teacher: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true
+    },
+    type: {
+      type: Schema.Types.String,
+      enum: teacherTypes,
+      required: true
+    }
   }],
   tasks: [{
     lead_time: {
