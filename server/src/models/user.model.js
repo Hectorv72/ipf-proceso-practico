@@ -41,14 +41,34 @@ const UserSchema = new Schema({
       type: Schema.Types.String,
       required: true
     },
-    documentation: [
-      {
-        url: Schema.Types.String,
-        file_name: Schema.Types.String,
-        type: Schema.Types.String
+    documentation: [{
+      url: {
+        type: Schema.Types.String,
+        required: true
+      },
+      file_name: {
+        type: Schema.Types.String,
+        required: true
+      },
+      type: {
+        type: Schema.Types.String,
+        required: true
       }
-    ]
-  }
+    }]
+  },
+  absences: [{
+    date: Schema.Types.Date,
+    career: {
+      type: Schema.Types.ObjectId,
+      ref: 'Career',
+      required: true
+    },
+    subject: {
+      type: Schema.Types.ObjectId,
+      ref: 'Subject',
+      required: true
+    }
+  }]
 }, {
   timestamps: true,
   versionKey: false,

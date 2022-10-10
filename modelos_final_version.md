@@ -4,11 +4,11 @@
 
 ---
 
-### Usuarios (user)
+### User (usuario)
 
 ```js
 {
-  user: String, //usuario
+  username: String, //usuario
   email: String,
   password: String,
   type: String, // tipo de usuario
@@ -21,9 +21,9 @@
   personal_info: {
     names: String, // nombres
     surnames: String, // apellidos
-    birth_date: Number, //fecha de nacimiento 
+    date_birth: Number, //fecha de nacimiento 
     dni: String,
-    attachments: [{ // documentacion
+    documentation: [{ // documentacion
       url: String,
       name: String,
       type: String
@@ -32,51 +32,57 @@
 }
 ```
 
-### Carrera (career)
+### Career (carrera)
 ```js
 {
   name: String // nombre de la carrera
   date: Date, // fecha de creacion
+  duration: Number, // Carga horaria
   classrooms: [{ // cursos
     date: Date, // fecha de creacion
     capacity: Number, // cantidad de usuarios
     students: Array<User> // estudiantes
   }],
-  subjects: [{ // materias
-    subject: Subject // materia
-    term: String, // tiempo de inicio(1er trimestre, 1er cuatrimestre)
-    year: Number // año al que pertenece esa materia
+  calendar: [{
+    year: Number,
+    schedules: [{
+      term: String, // tiempo de inicio(1er trimestre, 1er cuatrimestre)
+      subjects: Array<Subject>
+    }]
   }]
 }
 ```
 
-### Materia (subject)
+### Subject (materia)
 
 ```js
 {
   name: String, // nombre
   teachers: [ // profesores
-    { teacher: Usuario, type: String }
+    { teacher: User, type: String }
   ]
-  duration: Number, // Carga horaria
   tasks: [{
     lead_time: Date, // tiempo de entrega
+    date: Date, // fecha de creacion
     description: String, // descripcion
     type: String, // tipo de practico
-    year: Number, // año del curso al que pertenece
+    active: Boolean, // Si la actividad sigue activa para modificaciones
     attachments: [{ // archivos adjuntos
       url: String,
       name: String,
       type: String
     }],
-    deliveries:[{ // entregas
+    assigned_students: [{
       student: User,
-      date: Date, // fecha de entrega
       grade: Number, // calificacion
-      attachments: [{
-        url: String,
-        name: String,
-        type: String
+      completed: Boolean,
+      deliveries: [{ // entregas
+        date: Date, // fecha de entrega
+        attachments: [{
+          url: String,
+          name: String,
+          type: String
+        }]
       }]
     }]
   }]

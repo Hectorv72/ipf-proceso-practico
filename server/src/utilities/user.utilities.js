@@ -12,11 +12,25 @@ export const getUsers = async (filters) => {
     type && (find_filters.type = type);
     active && (find_filters.active = active);
   }
-  return await User.find(find_filters);
+  return await User.find(find_filters).populate({
+    path: 'absences',
+    select: 'date career subject',
+    populate: [
+      { path: 'career', select: '_id name date' },
+      { path: 'subject', select: '_id name' }
+    ]
+  });
 }
 
 export const getUserById = async (id) => {
-  return await User.findById(id);
+  return await User.findById(id).populate({
+    path: 'absences',
+    select: 'date career subject',
+    populate: [
+      { path: 'career', select: '_id name date' },
+      { path: 'subject', select: '_id name' }
+    ]
+  });
 }
 
 export const getRandomUser = async () => {

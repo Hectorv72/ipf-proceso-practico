@@ -5,39 +5,63 @@ const SubjectSchema = new Schema({
     type: Schema.Types.String,
     required: true
   },
-  classroom: {
-    type: Schema.Types.ObjectId,
-    ref: 'Class',
-    required: true
-  },
   teachers: [{
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true
   }],
-  term: {
-    type: Schema.Types.String,
-    required: true
-  },
-  duration: {
-    type: Schema.Types.Number,
-    required: true
-  },
-  schedules: [{
-    day: {
+  tasks: [{
+    lead_time: {
+      type: Schema.Types.Date,
+      required: true
+    },
+    date: {
+      type: Schema.Types.Date,
+      required: true
+    },
+    description: {
       type: Schema.Types.String,
       required: true
     },
-    timetable: {
-      start: {
-        type: Schema.Types.String,
+    type: {
+      type: Schema.Types.String,
+      required: true
+    },
+    active: {
+      type: Schema.Types.Boolean,
+      required: true
+    },
+    assigned_students: [{
+      student: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
         required: true
       },
-      end: {
-        type: Schema.Types.String,
-        required: true
-      }
-    }
+      grade: {
+        type: Schema.Types.Number,
+        default: 0
+      },
+      completed: {
+        type: Schema.Types.Boolean,
+        default: false
+      },
+      deliveries: [{
+        date: {
+          type: Schema.Types.Date,
+          required: true
+        },
+        attachments: [{
+          url: Schema.Types.String,
+          name: Schema.Types.String,
+          type: Schema.Types.String
+        }]
+      }]
+    }],
+    attachments: [{
+      url: Schema.Types.String,
+      name: Schema.Types.String,
+      type: Schema.Types.String
+    }]
   }]
 })
 

@@ -3,30 +3,14 @@ import Subject from "../models/subject.model.js";
 export const getSubjects = async (filters) => {
   const find_filters = {}
   if (filters) {
-    const { name, classroom, teacher, student, term, duration } = filters
-
+    const { name } = filters
     name && (find_filters.name = { '$regex': name })
-    classroom && (find_filters.classroom = classroom)
-    term && (find_filters.term = term)
-    duration && (find_filters.duration = duration)
-    // teacher && (find_filters.teachers = {
-    //   '$elemMatch': { 'personal_info.names': { '$regex': teacher } },
-    // })
-    // student && (find_filters.student = {
-    //   '$all': [
-    //     { '$elemMatch': { 'students.personal_info.names': { '$regex': student } } },
-    //     { '$elemMatch': { 'students.personal_info.surnames': { '$regex': student } } },
-    //   ]
-    // })
   }
 
   return await Subject.find(find_filters)
     .populate({
-      path: 'classroom',
-      populate: [{
-        path: 'students',
-        select: '_id username email active personal_info'
-      }]
+      path: 'tasks.asigned_students.student',
+      select: '_id username email active personal_info'
     })
     .populate({
       path: 'teachers',
@@ -37,11 +21,8 @@ export const getSubjects = async (filters) => {
 export const getSubjectById = async (id) => {
   return await Subject.findById(id)
     .populate({
-      path: 'classroom',
-      populate: [{
-        path: 'students',
-        select: '_id username email active personal_info'
-      }]
+      path: 'tasks.asigned_students.student',
+      select: '_id username email active personal_info'
     })
     .populate({
       path: 'teachers',
@@ -50,23 +31,20 @@ export const getSubjectById = async (id) => {
 }
 
 export const createNewSubject = async (data) => {
-  const { name, classroom, teachers, term, duration, schedules } = data;
+  const { name, teachers } = data;
 
-  const subject = new Subject({ name, classroom, teachers, term, duration, schedules });
+  const subject = new Subject({ name, teachers });
   await subject.save();
   return subject;
 }
 
 export const updateOneSubject = async (data) => {
-  const { name, classroom, teachers, term, duration, schedules, id } = data;
+  const { name, teachers, tasks } = data;
   const update = {};
 
-  classroom && (update.classroom = classroom);
-  schedules && (update.schedules = schedules);
   teachers && (update.teachers = teachers);
-  duration && (update.duration = duration);
+  tasks && (update.tasks = tasks);
   name && (update.name = name);
-  term && (update.term = term);
 
   // Verifica que exista alguna modificación para realizar
   if (Object.entries(update).length > 0) {
