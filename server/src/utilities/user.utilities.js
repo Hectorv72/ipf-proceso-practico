@@ -19,6 +19,10 @@ export const getUserById = async (id) => {
   return await User.findById(id);
 }
 
+export const getRandomUser = async () => {
+  return (await User.aggregate([{ $sample: { size: 1 } }]))[0]
+}
+
 export const createNewUser = async (data) => {
   let { password } = data;
   const { username, email, type, personal_info } = data;

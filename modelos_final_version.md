@@ -8,82 +8,78 @@
 
 ```js
 {
-  usuario: String,
+  user: String, //usuario
   email: String,
   password: String,
-  tipo_usuario: String,
-  estado: Boolean,
-  fecha_ingreso: Date,
-  datos_personales: {
-    nombres: String,
-    apellidos: String,
-    edad: Number,
+  type: String, // tipo de usuario
+  active: Boolean, // estado
+  absences: [{ // inasistencias
+    date: Date, // fecha
+    career: Career, // carrera
+    subject: Subject, // materia
+  }],
+  personal_info: {
+    names: String, // nombres
+    surnames: String, // apellidos
+    birth_date: Number, //fecha de nacimiento 
     dni: String,
-    documentacion: [
-      {
-        url: String,
-        nombre: String,
-        tipo: String
-      }
-    ]
+    attachments: [{ // documentacion
+      url: String,
+      name: String,
+      type: String
+    }]
   }
 }
 ```
 
-### Cursos (class)
-
+### Carrera (career)
 ```js
 {
-  carrera: String, // career
-  fecha: Date, // date
-  cupo: Number, // capacity
-  alumnos: Array<Usuario> // students
+  name: String // nombre de la carrera
+  date: Date, // fecha de creacion
+  classrooms: [{ // cursos
+    date: Date, // fecha de creacion
+    capacity: Number, // cantidad de usuarios
+    students: Array<User> // estudiantes
+  }],
+  subjects: [{ // materias
+    subject: Subject // materia
+    term: String, // tiempo de inicio(1er trimestre, 1er cuatrimestre)
+    year: Number // año al que pertenece esa materia
+  }]
 }
 ```
 
-### Modulos (subject)
+### Materia (subject)
 
 ```js
 {
-  materia: String, // (name)
-  curso: Curso, // class
-  profesores: [ // teachers
-    { profesor: Usuario, tipo: String }
+  name: String, // nombre
+  teachers: [ // profesores
+    { teacher: Usuario, type: String }
   ]
-  periodo: Number, // 1er cuatrimestre o 2do // term
-  duracion: Number, // Carga horaria //duration
-  clases: [{ //schedules
-      dia: String, // day
-      horario: { // timetable
-        inicio: String, // start
-        fin: String, // end
-      }
+  duration: Number, // Carga horaria
+  tasks: [{
+    lead_time: Date, // tiempo de entrega
+    description: String, // descripcion
+    type: String, // tipo de practico
+    year: Number, // año del curso al que pertenece
+    attachments: [{ // archivos adjuntos
+      url: String,
+      name: String,
+      type: String
+    }],
+    deliveries:[{ // entregas
+      student: User,
+      date: Date, // fecha de entrega
+      grade: Number, // calificacion
+      attachments: [{
+        url: String,
+        name: String,
+        type: String
+      }]
+    }]
   }]
-}
-```
-
-### Inasistencias (absences)
-
-```js
-{
-  fecha: Date, // date
-  modulo: Modulo, // subject
-  alumnos: [{ // students
-    alumno: Usuario, // student
-  }]
-}
-```
-
-### Calificaciónes (grade)
-
-```js
-{
-  fecha: Date,
-  alumno: Persona,
-  modulo: Modulo,
-  descripcion: String,
-  calificacion: Number,
-  tipo: String
 }
 ```
 
@@ -91,10 +87,10 @@
 
 ```js
 {
-  cabecera: String,
-  mensaje: String,
-  tipo: String,
-  curso: Curso || null,
-  emisor: Usuario,
+  header: String, // cabecera
+  message: String, // mensaje
+  type: String, // tipo de mensaje
+  career: Career || null, // si va dedicado a una carrera especifica
+  sender: Usuario, // usuario del mensaje
 }
 ```
