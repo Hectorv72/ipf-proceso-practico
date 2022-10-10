@@ -12,7 +12,7 @@ export const getSubjects = async (filters) => {
 
   return await Subject.find(find_filters)
     .populate({
-      path: 'tasks.asigned_students.student',
+      path: 'tasks.assigned_students.student',
       select: '_id username email active personal_info'
     })
     .populate({
@@ -24,7 +24,7 @@ export const getSubjects = async (filters) => {
 export const getSubjectById = async (id) => {
   return await Subject.findById(id)
     .populate({
-      path: 'tasks.asigned_students.student',
+      path: 'tasks.assigned_students.student',
       select: '_id username email active personal_info'
     })
     .populate({
