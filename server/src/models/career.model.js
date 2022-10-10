@@ -39,4 +39,4 @@ const SubjectSchema = new Schema({
   }]
 })
 
-export default model('Subject', SubjectSchema);
+export default model('Career', SubjectSchema);

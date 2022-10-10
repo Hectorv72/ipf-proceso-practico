@@ -5,10 +5,8 @@ import helmet from 'helmet';
 import { connectMongoDB } from './src/connections/mongodb.connection.js';
 import userRoutes from './src/routes/user.routes.js';
 import loginRoutes from './src/routes/login.routes.js';
+import careerRoutes from './src/routes/career.routes.js';
 import subjectRoutes from './src/routes/subject.routes.js';
-import classroomRoutes from './src/routes/classroom.routes.js';
-import absenceRoutes from './src/routes/absence.routes.js';
-import gradeRoutes from './src/routes/grade.routes.js';
 import postRoutes from './src/routes/post.routes.js';
 
 const app = express();
@@ -22,12 +20,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
 // routes
+app.use('/subject', subjectRoutes);
+app.use('/career', careerRoutes);
 app.use('/auth', loginRoutes);
 app.use('/user', userRoutes);
-app.use('/classroom', classroomRoutes);
-app.use('/subject', subjectRoutes);
-app.use('/absence', absenceRoutes);
-app.use('/grade', gradeRoutes);
 app.use('/post', postRoutes);
 
 // runner
