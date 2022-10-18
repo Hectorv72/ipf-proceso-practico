@@ -120,8 +120,12 @@ export const generateRandomCareer = async () => {
     })
   }
 
+  const career_date = faker.date.between('2018-01-01T00:00:00.000Z', '2023-01-01T00:00:00.000Z')
+
+
   return ({
     name,
+    date: career_date,
     duration,
     classrooms,
     calendar

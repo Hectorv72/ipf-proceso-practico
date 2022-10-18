@@ -86,7 +86,7 @@ export const generateRandomUser = async () => {
   return ({
     username: faker.internet.userName(names, surnames),
     email: faker.internet.email(names, surnames),
-    password: faker.internet.password(),
+    password: process.env.RANDOMUSER_PASSWORD || faker.internet.password(),
     personal_info: {
       names,
       surnames,
