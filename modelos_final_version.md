@@ -4,87 +4,88 @@
 
 ---
 
-### Usuarios
+### User (usuario)
 
 ```js
 {
-  usuario: String,
+  username: String, //usuario
   email: String,
   password: String,
-  tipo_usuario: String,
-  estado: Boolean,
-  fecha_ingreso: Date,
-  datos_personales: {
-    nombres: String,
-    apellidos: String,
-    edad: Number,
+  type: String, // tipo de usuario
+  active: Boolean, // estado
+  absences: [{ // inasistencias
+    date: Date, // fecha
+    career: Career, // carrera
+    subject: Subject, // materia
+  }],
+  personal_info: {
+    names: String, // nombres
+    surnames: String, // apellidos
+    date_birth: Number, //fecha de nacimiento 
     dni: String,
-    documentacion: [
-      {
-        url: String,
-        nombre: String,
-        tipo: String
-      }
-    ]
+    documentation: [{ // documentacion
+      url: String,
+      name: String,
+      type: String
+    }]
   }
 }
 ```
 
-### Cursos
-
+### Career (carrera)
 ```js
 {
-  carrera: String,
-  fecha: Date,
-  cupo: Number,
-  alumnos: Array<Usuario>
+  name: String // nombre de la carrera
+  date: Date, // fecha de creacion
+  duration: Number, // Carga horaria
+  classrooms: [{ // cursos
+    date: Date, // fecha de creacion
+    capacity: Number, // cantidad de usuarios
+    students: Array<User> // estudiantes
+  }],
+  calendar: [{
+    year: Number,
+    schedules: [{
+      term: String, // tiempo de inicio(1er trimestre, 1er cuatrimestre)
+      subjects: Array<Subject>
+    }]
+  }]
 }
 ```
 
-### Modulos
+### Subject (materia)
 
 ```js
 {
-  materia: String,
-  curso: Curso,
-  profesores: [
-    { profesor: Usuario, tipo: String }
+  name: String, // nombre
+  teachers: [ // profesores
+    { teacher: User, type: String }
   ]
-  periodo: Number, // 1er cuatrimestre o 2do
-  duracion: Number, // Carga horaria
-  clases: [{
-      dia: String,
-      horario: {
-        inicio: String,
-        fin: String,
-      }
+  tasks: [{
+    lead_time: Date, // tiempo de entrega
+    date: Date, // fecha de creacion
+    description: String, // descripcion
+    type: String, // tipo de practico
+    active: Boolean, // Si la actividad sigue activa para modificaciones
+    attachments: [{ // archivos adjuntos
+      url: String,
+      name: String,
+      type: String
+    }],
+    assigned_students: [{
+      student: User,
+      grade: Number, // calificacion
+      completed: Boolean,
+      deliveries: [{ // entregas
+        date: Date, // fecha de entrega
+        attachments: [{
+          url: String,
+          name: String,
+          type: String
+        }]
+      }]
+    }]
   }]
-}
-```
-
-### Inasistencias
-
-```js
-{
-  fecha: Date,
-  modulo: Modulo,
-  alumnos: [{
-    alumno: Usuario,
-    presencia: Boolean
-  }]
-}
-```
-
-### Calificaciónes
-
-```js
-{
-  fecha: Date,
-  alumno: Persona,
-  modulo: Modulo,
-  descripcion: String,
-  calificacion: Number,
-  tipo: String
 }
 ```
 
@@ -92,10 +93,10 @@
 
 ```js
 {
-  cabecera: String,
-  mensaje: String,
-  tipo: String,
-  curso: Curso || null,
-  emisor: Usuario,
+  header: String, // cabecera
+  message: String, // mensaje
+  type: String, // tipo de mensaje
+  career: Career || null, // si va dedicado a una carrera especifica
+  sender: Usuario, // usuario del mensaje
 }
 ```
