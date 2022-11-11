@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "server": "npm run dev --prefix server",
-    "dev": "concurrently \"npm run server\""
+    "client": "npm run dev --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
