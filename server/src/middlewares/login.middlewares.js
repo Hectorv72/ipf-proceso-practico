@@ -2,6 +2,30 @@ import bcryptjs from 'bcryptjs'
 import User from '../models/user.model.js'
 
 // Login Middlewares
+export const verifyJWT = async () => {
+  const token = req.header('x-auth-token')
+  //check token
+  if (!token) {
+    return res.status(401).json({ message: 'no token, unauthorized' })
+  }
+
+  try {
+    const { id } = jwt.verify(token, process.env.SECRET)
+    const user = User.findById(id)
+    if (user) {
+      req.user = decoded.user
+      next()
+    }
+    return res.status(400).json({
+      message: 'no user'
+    })
+
+  } catch (error) {
+    console.log('error en verificacion de token => ', error)
+    res.status(401).json({ message: 'unvalid token' })
+  }
+
+}
 
 export const verifyUserExistence = async (req, res, next) => {
   try {

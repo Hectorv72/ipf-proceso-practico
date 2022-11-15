@@ -1,10 +1,12 @@
 import axios from 'axios'
+import setAuthToken from '../../helpers/setAuthToken'
 
-const server = 'localhost:4000'
+const server = import.meta.env.VITE_SERVER_URL
 
 const api = {
   register: `${server}/auth/register`,
   login: `${server}/auth/login`,
+  load: `${server}/auth/login`,
 }
 
 const config = {
@@ -14,50 +16,73 @@ const config = {
 }
 
 export const authTypes = {
-  REGISTER_FAIL: 'REGISTER_FAIL',
-  REGISTER_SUCCESS: 'REGISTER_SUCCESS',
-  USER_LOADED: 'USER_LOADED',
-  AUTH_ERROR: 'AUTH_ERROR',
-  LOGIN_SUCCESS: 'LOGIN_SUCCESS',
-  LOGIN_FAIL: 'LOGIN_FAIL',
-  LOGOUT: 'LOGOUT',
-  CLEAR_PROFILE: 'CLEAR_PROFILE'
+  AUTH_SUCCESS: 'AUTH_SUCCESS',
+  AUTH_FAIL: 'AUTH_FAIL',
+  AUTH_CLEAR: 'AUTH_CLEAR',
+  LOAD_USER: 'LOAD_USER'
+}
+
+export const authUser = () => async dispatch => {
+  const { AUTH_SUCCESS, AUTH_FAIL } = authTypes
+  localStorage.token && setAuthToken(localStorage.token)
+
+  try {
+    const response = await axios.get()
+    dispatch({
+      type: AUTH_SUCCESS,
+      payload: response.data
+    })
+  } catch (error) {
+    dispatch({
+      type: AUTH_FAIL
+    })
+  }
 }
 
 export const register = ({ username, email, password }) => async dispatch => {
-  const { REGISTER_SUCCESS } = authTypes
+  const { AUTH_SUCCESS, AUTH_FAIL } = authTypes
   const body = JSON.stringify({ username, email, password })
   console.info('register: body =>', body)
 
   try {
     const response = await axios.post(api.register, body, config)
-
     dispatch({
-      type: REGISTER_SUCCESS,
+      type: AUTH_SUCCESS,
       payload: response.data
     })
-
     dispatch(loadUser())
-
   } catch (error) {
-    const errors = error.response.data.errors
+    // const errors = error.response.data.errors
 
     // if (errors) {
     //   errors.forEach(error => dispatch(setAlert(error.msg, 'danger')))
     // }
 
     dispatch({
-      type: REGISTER_FAIL
+      type: AUTH_FAIL
     })
   }
 }
 
-export const loadUser = () => async dispatch => {
-  // localStorage.token && setAuthToken(localStorage.token)
-
+export const login = () => async dispatch => {
+  const { AUTH_SUCCESS, AUTH_FAIL } = authTypes
+  const body = JSON.stringify({ email, password })
   try {
-    const response = await axios.get()
+    const response = await axios.post(api.login, body, config)
+    dispatch({
+      type: AUTH_SUCCESS,
+      payload: response.data
+    })
+    dispatch(loadUser())
   } catch (error) {
-
+    // const errors = err.response.data.errors
+    dispatch({
+      type: AUTH_FAIL
+    })
   }
-} 
+}
+
+export const logout = () => dispatch => {
+  const { AUTH_CLEAR } = authTypes
+  dispatch({ type: AUTH_CLEAR })
+}
