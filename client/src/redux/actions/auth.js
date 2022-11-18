@@ -6,7 +6,6 @@ const server = import.meta.env.VITE_SERVER_URL
 const api = {
   register: `${server}/auth/register`,
   login: `${server}/auth/login`,
-  load: `${server}/auth/login`,
 }
 
 const config = {
@@ -39,9 +38,9 @@ export const authUser = () => async dispatch => {
   }
 }
 
-export const register = ({ username, email, password }) => async dispatch => {
+export const register = ({ email, password }) => async dispatch => {
   const { AUTH_SUCCESS, AUTH_FAIL } = authTypes
-  const body = JSON.stringify({ username, email, password })
+  const body = JSON.stringify({ email, password })
   console.info('register: body =>', body)
 
   try {
@@ -50,7 +49,7 @@ export const register = ({ username, email, password }) => async dispatch => {
       type: AUTH_SUCCESS,
       payload: response.data
     })
-    dispatch(loadUser())
+    // dispatch(loadUser())
   } catch (error) {
     // const errors = error.response.data.errors
 
@@ -73,7 +72,7 @@ export const login = () => async dispatch => {
       type: AUTH_SUCCESS,
       payload: response.data
     })
-    dispatch(loadUser())
+    // dispatch(loadUser())
   } catch (error) {
     // const errors = err.response.data.errors
     dispatch({

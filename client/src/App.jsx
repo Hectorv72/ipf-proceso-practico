@@ -1,20 +1,10 @@
 import React from 'react'
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom"
+import { RouterProvider } from "react-router-dom"
 import { Provider } from 'react-redux'
 import store from './redux/store'
-
-const routes = createBrowserRouter([
-  {
-    path: '/',
-    element: <div>prueba</div>
-  },
-])
+import routes from './routes'
 
 function App() {
-
   return (
     <Provider store={store}>
       <RouterProvider router={routes} />
