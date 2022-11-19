@@ -1,19 +1,16 @@
 import axios from 'axios'
 import setAuthToken from '../../helpers/setAuthToken'
 
+// API ROUTES
+const config = { headers: { 'Content-Type': 'application/json' } }
 const server = import.meta.env.VITE_SERVER_URL
-
 const api = {
+  auth: `${server}/auth`,
   register: `${server}/auth/register`,
   login: `${server}/auth/login`,
 }
 
-const config = {
-  headers: {
-    'Content-Type': 'application/json'
-  }
-}
-
+// TYPES
 export const authTypes = {
   AUTH_SUCCESS: 'AUTH_SUCCESS',
   AUTH_FAIL: 'AUTH_FAIL',
@@ -21,12 +18,15 @@ export const authTypes = {
   LOAD_USER: 'LOAD_USER'
 }
 
-export const authUser = () => async dispatch => {
+// ACTIONS
+const actions = {}
+
+actions.authUser = () => async dispatch => {
   const { AUTH_SUCCESS, AUTH_FAIL } = authTypes
   localStorage.token && setAuthToken(localStorage.token)
 
   try {
-    const response = await axios.get()
+    const response = await axios.get(api.auth)
     dispatch({
       type: AUTH_SUCCESS,
       payload: response.data
@@ -38,7 +38,7 @@ export const authUser = () => async dispatch => {
   }
 }
 
-export const register = ({ email, password }) => async dispatch => {
+actions.register = ({ email, password }) => async dispatch => {
   const { AUTH_SUCCESS, AUTH_FAIL } = authTypes
   const body = JSON.stringify({ email, password })
   console.info('register: body =>', body)
@@ -63,7 +63,7 @@ export const register = ({ email, password }) => async dispatch => {
   }
 }
 
-export const login = () => async dispatch => {
+actions.login = ({ email, password }) => async dispatch => {
   const { AUTH_SUCCESS, AUTH_FAIL } = authTypes
   const body = JSON.stringify({ email, password })
   try {
@@ -81,7 +81,9 @@ export const login = () => async dispatch => {
   }
 }
 
-export const logout = () => dispatch => {
+actions.logout = () => dispatch => {
   const { AUTH_CLEAR } = authTypes
   dispatch({ type: AUTH_CLEAR })
 }
+
+export default actions

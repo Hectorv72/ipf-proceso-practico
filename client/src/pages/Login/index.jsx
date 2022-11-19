@@ -1,20 +1,24 @@
-import React, { useState } from 'react'
-import { connect } from 'react-redux'
-import { login } from '../../redux/actions/auth'
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import connectRedux from '../../redux/connectRedux'
 
-const Login = ({ register, ...props }) => {
+const Login = ({ login, auth }) => {
   const [user, setUser] = useState()
+  const navigate = useNavigate()
 
   const handleChangeForm = ({ target }) => {
     const { name, value } = target
     setUser(prev => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmitForm = event => {
+  const handleSubmitForm = async event => {
     event.preventDefault()
-    console.log(props)
     login(user)
   }
+
+  useEffect(() => {
+    auth.user && navigate('/')
+  }, [auth])
 
   return (
     <div>
@@ -26,9 +30,4 @@ const Login = ({ register, ...props }) => {
     </div>
   )
 }
-
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
-})
-
-export default connect(mapStateToProps, { login })(Login)
+export default connectRedux(Login)

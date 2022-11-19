@@ -1,8 +1,9 @@
 import bcryptjs from 'bcryptjs'
 import User from '../models/user.model.js'
+import jwt from 'jsonwebtoken'
 
 // Login Middlewares
-export const verifyJWT = async () => {
+export const verifyJWT = async (req, res, next) => {
   const token = req.header('x-auth-token')
   //check token
   if (!token) {
@@ -11,14 +12,12 @@ export const verifyJWT = async () => {
 
   try {
     const { id } = jwt.verify(token, process.env.SECRET)
-    const user = User.findById(id)
+    const user = await User.findById(id)
     if (user) {
-      req.user = decoded.user
-      next()
+      req.user = user
+      return next()
     }
-    return res.status(400).json({
-      message: 'no user'
-    })
+    return res.status(400).json({ message: 'no user' })
 
   } catch (error) {
     console.log('error en verificacion de token => ', error)
