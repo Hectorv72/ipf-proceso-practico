@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Root from "./layouts/Root";
 import Login from "./pages/Login";
 import Main from "./pages/Main";
+import Posts from "./pages/Posts";
 
 export default createBrowserRouter([
   {
@@ -15,7 +16,11 @@ export default createBrowserRouter([
       {
         path: 'login',
         element: <Login />
-      }
+      },
+      {
+        path: 'posts',
+        element: <Posts />
+      },
     ]
   },
   {
