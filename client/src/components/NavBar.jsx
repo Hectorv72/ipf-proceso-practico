@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 
 const NavBar = ({ children }) => {
   const items = [
@@ -24,8 +24,9 @@ const NavBar = ({ children }) => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Link className='nav-link' to="/">Menu</Link>
-              <Link className='nav-link' to="posts">Posts</Link>
+              <NavLink className='nav-link' to="/">Menu</NavLink>
+              <NavLink className='nav-link' to="posts">Posts</NavLink>
+              <NavLink className='nav-link' to="careers">Careers</NavLink>
               {/* <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
@@ -48,7 +49,7 @@ const NavBar = ({ children }) => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <Container className='mt-2'>
+      <Container fluid className='mt-2'>
         {children}
       </Container>
     </>

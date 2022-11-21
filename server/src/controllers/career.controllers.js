@@ -1,4 +1,4 @@
-import { clearCareers, createNewCareer, generateRandomCareers, getCareers, removeOneCareer, updateOneCareer } from "../utilities/career.utilities.js";
+import { clearCareers, createNewCareer, generateRandomCareers, getCareers, getCareerById, removeOneCareer, updateOneCareer } from "../utilities/career.utilities.js";
 import { catchHandler } from "../utilities/general.utilities.js";
 
 export const findCareers = async (req, res) => {
@@ -7,6 +7,17 @@ export const findCareers = async (req, res) => {
     return res.status(200).json({ message: 'Busqueda de carreras realizada correctamente', careers });
   } catch (error) {
     const { status, message } = catchHandler(error, 'buscar carreras');
+    return res.status(status).json({ message });
+  }
+}
+
+export const getCareer = async (req, res) => {
+  try {
+    const { careerId } = req.params
+    const career = await getCareerById(careerId);
+    return res.status(200).json({ message: 'Se econtró una carrera', career });
+  } catch (error) {
+    const { status, message } = catchHandler(error, 'obtener una carrera');
     return res.status(status).json({ message });
   }
 }

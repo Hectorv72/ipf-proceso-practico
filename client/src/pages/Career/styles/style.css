@@ -1,0 +1,31 @@
+.classroom-card {
+  width: 302px;
+  height: 296px;
+}
+
+.classroom-card:hover{
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+  cursor: pointer;
+}
+
+.classroom-card-img {
+  height: 100px;
+}
+
+.classroom-card-title{
+  font-family: "Google Slans",Roboto,Arial,sans-serif;
+}
+
+.classroom-card-teacher{
+  color:white;
+  font-family: "Roboto",Helvetica,Arial,sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+  position: absolute;
+  top: 65px;
+}
+
+.classroom-card-footer {
+  height: 57px;
+}
