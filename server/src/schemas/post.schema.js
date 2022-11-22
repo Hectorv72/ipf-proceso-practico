@@ -6,7 +6,6 @@ const checksRequired = [
   { key: 'header', msg: 'La cabecera es requerida' },
   { key: 'message', msg: 'El mensaje es requerido' },
   { key: 'type', msg: 'El tipo de post es requerido' },
-  { key: 'sender', msg: 'El emisor es requerido' },
 ];
 
 export const RequiredSchema = checksRequired.map(

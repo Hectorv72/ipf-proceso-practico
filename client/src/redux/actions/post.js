@@ -52,7 +52,7 @@ actions.addPost = form => async dispatch => {
     const response = await axios.post(api.post, form, config)
     dispatch({
       type: CREATE_POST,
-      payload: response.data
+      payload: response.data.post
     })
   } catch (error) {
 

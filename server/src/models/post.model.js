@@ -13,7 +13,7 @@ const ClassroomSchema = new Schema({
   },
   type: {
     type: Schema.Types.String,
-    required: true
+    default: 'aviso'
   },
   career: {
     type: Schema.Types.ObjectId,

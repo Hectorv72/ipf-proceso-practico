@@ -12,8 +12,10 @@ export const findPosts = async (req, res) => {
 }
 
 export const createPost = async (req, res) => {
+  const { _id: sender } = req.user
+  const data = { ...req.body, sender }
   try {
-    const post = await createNewPost(req.body);
+    const post = await createNewPost(data);
     return res.status(201).json({ message: 'Post creada correctamente', post });
   } catch (error) {
     const { status, message } = catchHandler(error, 'crear post');

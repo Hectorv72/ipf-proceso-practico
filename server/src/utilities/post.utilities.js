@@ -42,7 +42,11 @@ export const createNewPost = async (data) => {
 
   const post = new Post({ header, message, type, career, sender, clasroom });
   await post.save();
-  return post;
+  return await post.populate({
+    path: 'sender',
+    select: '_id username email active personal_info'
+  })
+  // return post;
 }
 
 export const updateOnePost = async (data) => {

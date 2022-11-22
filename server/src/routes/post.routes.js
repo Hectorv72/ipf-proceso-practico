@@ -6,13 +6,14 @@ import { clearAllPosts, createPost, deletePost, factoryPosts, findPosts, updateP
 
 // middlewares
 import { verifyFactoryVol } from '../middlewares/general.middlewares.js';
+import { verifyJWT } from '../middlewares/login.middlewares.js';
 import { requiredPostFormat, verifyPostFormat } from '../middlewares/post.middlewares.js';
 
 routes.get('/', findPosts);
-routes.post('/', [requiredPostFormat, verifyPostFormat], createPost);
+routes.post('/', [requiredPostFormat, verifyPostFormat, verifyJWT], createPost);
 routes.post('/factory', verifyFactoryVol, factoryPosts)
 routes.put('/', [verifyPostFormat], updatePost);
-routes.delete('/', deletePost);
+routes.delete('/', verifyJWT, deletePost);
 routes.delete('/all', clearAllPosts);
 
 

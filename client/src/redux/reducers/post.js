@@ -21,10 +21,15 @@ export default (state = initialState, action) => {
   const { type, payload } = action
 
   switch (type) {
+    case CREATE_POST:
+      return {
+        ...state,
+        posts: [payload, ...state.posts],
+      }
     case GET_POSTS:
       return {
         ...state,
-        posts: payload,
+        posts: payload.reverse(),
         loading: false
       }
     case GET_POST:
