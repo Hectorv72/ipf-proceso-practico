@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import connectRedux from '../../redux/connectRedux'
 
-const Login = ({ login, auth }) => {
+const Login = ({ login, auth, setAppPage }) => {
   const [user, setUser] = useState()
   const navigate = useNavigate()
 
@@ -19,6 +19,10 @@ const Login = ({ login, auth }) => {
   useEffect(() => {
     auth.user && navigate('/')
   }, [auth])
+
+  useEffect(() => {
+    setAppPage('login')
+  }, [])
 
   return (
     <div>

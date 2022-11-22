@@ -13,7 +13,11 @@ export default createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Main />
+        element: <Careers />,
+      },
+      {
+        path: 'career/:careerId',
+        element: <Career />
       },
       {
         path: 'login',
@@ -22,14 +26,6 @@ export default createBrowserRouter([
       {
         path: 'posts',
         element: <Posts />
-      },
-      {
-        path: 'careers',
-        element: <Careers />,
-      },
-      {
-        path: 'careers/:careerId',
-        element: <Career />
       },
     ]
   },

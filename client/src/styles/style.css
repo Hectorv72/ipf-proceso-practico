@@ -1,0 +1,47 @@
+.sidebar {
+  width: 300px !important;
+}
+
+.sidebar-item {
+  border-radius: 0 2rem 2rem 0;
+  height: 3.5rem;
+}
+
+
+.sidebar-item:hover {
+  background-color: rgba(103, 103, 103, 0.05);
+}
+
+.sidebar-item.active {
+  background-color: rgba(26, 115, 232, 0.122);
+}
+
+.sidebar-item-icon {
+  font-size: 1.03rem;
+  width: 60px;
+}
+
+.sidebar-item-icon-letter {
+  border-radius: 50%;
+  color: rgba(255, 255, 255, .87);
+  flex-shrink: 0;
+  font-size: 1rem;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  text-align: center;
+  letter-spacing: .00625em;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-weight: 500;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.sidebar-item-text {
+  letter-spacing: .018em;
+  /* font-family: "Google Sans", Roboto, Arial, sans-serif; */
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  color: #3c4043;
+}

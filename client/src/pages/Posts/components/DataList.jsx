@@ -6,7 +6,7 @@ import ListPagination from './ListPagination'
 const DataList = ({ items = [], renderItem = () => null }) => {
   const [pages, setPages] = useState(0)
   const [page, setPage] = useState(1)
-  const itemsPerPage = 4
+  const itemsPerPage = 3
 
   useEffect(() => {
     setPages(items.length > 0 ? Math.ceil(items.length / itemsPerPage) : 0)
