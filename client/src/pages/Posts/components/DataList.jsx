@@ -1,9 +1,11 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import connectRedux from '../../../redux/connectRedux'
 import ListPagination from './ListPagination'
 
-const DataList = ({ items = [], renderItem = () => null }) => {
+const DataList = ({ items = [], renderItem = () => null, post }) => {
+  const { posts } = post
   const [pages, setPages] = useState(0)
   const [page, setPage] = useState(1)
   const itemsPerPage = 3
@@ -11,6 +13,10 @@ const DataList = ({ items = [], renderItem = () => null }) => {
   useEffect(() => {
     setPages(items.length > 0 ? Math.ceil(items.length / itemsPerPage) : 0)
   }, [items])
+
+  useEffect(() => {
+    setPage(1)
+  }, [posts])
 
   const handleChangePage = (page) => setPage(page)
 
@@ -29,4 +35,4 @@ const DataList = ({ items = [], renderItem = () => null }) => {
   )
 }
 
-export default DataList
+export default connectRedux(DataList)
