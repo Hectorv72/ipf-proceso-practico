@@ -2,7 +2,9 @@ import { authTypes } from '../actions/career'
 const {
   GET_CAREERS,
   GET_CAREER,
+  GET_SUBJECT,
   CLEAR_CAREER,
+  CLEAR_SUBJECT,
   CREATE_CAREER,
   UPDATE_CAREER,
   DELETE_CAREER,
@@ -33,6 +35,21 @@ export default (state = initialState, action) => {
         ...state,
         career: payload,
         loading: false
+      }
+    case GET_SUBJECT:
+      return {
+        ...state,
+        subject: payload,
+      }
+    case CLEAR_CAREER:
+      return {
+        ...state,
+        career: null,
+      }
+    case CLEAR_SUBJECT:
+      return {
+        ...state,
+        subject: null,
       }
     default:
       return state

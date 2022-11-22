@@ -6,7 +6,7 @@ const Login = ({ login, auth, setAppPage }) => {
   const [user, setUser] = useState()
   const navigate = useNavigate()
 
-  const handleChangeForm = ({ target }) => {
+  const handleChangeForm = ({ target, setAppPage, resetAppTitle }) => {
     const { name, value } = target
     setUser(prev => ({ ...prev, [name]: value }))
   }
@@ -21,6 +21,7 @@ const Login = ({ login, auth, setAppPage }) => {
   }, [auth])
 
   useEffect(() => {
+    resetAppTitle()
     setAppPage('login')
   }, [])
 

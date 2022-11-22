@@ -1,4 +1,4 @@
-import { clearSubjects, createNewSubject, generateRandomSubjects, getSubjects, removeOneSubject, updateOneSubject } from "../utilities/subject.utilities.js";
+import { clearSubjects, createNewSubject, generateRandomSubjects, getSubjects, getSubjectById, removeOneSubject, updateOneSubject } from "../utilities/subject.utilities.js";
 import { catchHandler } from "../utilities/general.utilities.js";
 
 export const findSubjects = async (req, res) => {
@@ -10,6 +10,18 @@ export const findSubjects = async (req, res) => {
     return res.status(status).json({ message });
   }
 }
+
+export const getSubject = async (req, res) => {
+  try {
+    const { subjectId } = req.params
+    const subject = await getSubjectById(subjectId);
+    return res.status(200).json({ message: 'Busqueda de materia realizada correctamente', subject });
+  } catch (error) {
+    const { status, message } = catchHandler(error, 'buscar materia');
+    return res.status(status).json({ message });
+  }
+}
+
 
 export const createSubject = async (req, res) => {
   try {

@@ -4,11 +4,12 @@ import DataList from './components/DataList'
 import PostCard from './components/PostCard'
 import WritePost from './components/WritePost'
 
-const Posts = ({ post, getPosts, setAppPage }) => {
+const Posts = ({ post, getPosts, setAppPage, setAppTitle }) => {
   const { posts } = post
 
   useEffect(() => {
     getPosts()
+    setAppTitle('Anuncios')
     setAppPage('posts')
   }, [])
 

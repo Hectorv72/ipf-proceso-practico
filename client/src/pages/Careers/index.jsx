@@ -3,10 +3,12 @@ import { useEffect } from 'react'
 import connectRedux from '../../redux/connectRedux'
 import CareerCard from './layouts/CareerCard'
 
-const Careers = ({ career, getCareers, setAppPage }) => {
+const Careers = ({ career, getCareers, setAppPage, resetAppTitle, clearCareer }) => {
   const { careers } = career
   useEffect(() => {
     getCareers()
+    resetAppTitle()
+    clearCareer()
     setAppPage('careers')
   }, [])
 

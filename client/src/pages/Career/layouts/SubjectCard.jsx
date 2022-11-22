@@ -4,10 +4,10 @@ import { Link, NavLink } from 'react-router-dom'
 import '../styles/style.css'
 
 const SubjectCard = ({ data }) => {
-  const { name, teachers } = data
+  const { name, teachers, _id } = data
   const teacher = teachers ? teachers.find(teacher => teacher.type === 'jefe').teacher : null
   return (
-    <Link to="/">
+    <Link to={`/subject/${_id}`}>
       <Card className='my-3 classroom-card'>
         <Card.Img
           variant="top"

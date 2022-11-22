@@ -1,0 +1,32 @@
+.header-subject-text {
+  /* font-family: "Google Sans", Roboto, Arial, sans-serif; */
+  font-size: 1.75rem;
+  font-weight: 500;
+  line-height: 2.25rem;
+}
+
+
+.notification-header {
+  letter-spacing: .01785714em;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 550;
+  line-height: 1.25rem;
+  color: #3c4043;
+  text-transform: none;
+}
+
+.notification-body {
+  color: rgba(0, 0, 0, .549);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+}
+
+.write-card {
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  color: rgba(0, 0, 0, .549);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+}

@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import connectRedux from '../redux/connectRedux'
 
-const SideBarItem = ({ children, to, closeSideBar }) => {
+const SideBarNavItem = ({ children, to, closeSideBar }) => {
   return (
     <NavLink className='nav-link sidebar-item d-flex align-items-center' to={to} onClick={closeSideBar}>
       {children}
@@ -10,4 +10,4 @@ const SideBarItem = ({ children, to, closeSideBar }) => {
   )
 }
 
-export default connectRedux(SideBarItem)
+export default connectRedux(SideBarNavItem)

@@ -1,13 +1,13 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { Offcanvas } from 'react-bootstrap'
-import SideBarItemCareer from '../layouts/SideBarItemCareer'
+import SideBarItem from '../layouts/SideBarItem'
 import connectRedux from '../redux/connectRedux'
-import SideBarItem from './SideBarItem'
+import SideBarNavItem from './SideBarNavItem'
 
 const SideBar = ({ app, career, closeSideBar, getCareers }) => {
-  const { sidebar } = app
-  const { careers } = career
+  const { sidebar, page } = app
+  const { careers, career: selected } = career
 
   useEffect(() => {
     career.loading === true && getCareers()
@@ -15,9 +15,13 @@ const SideBar = ({ app, career, closeSideBar, getCareers }) => {
 
   const renderItemSideBar =
     (item, index) =>
-      <SideBarItem key={`sidebar-item-${index}`} to={`career/${item._id}`}>
-        <SideBarItemCareer name={item.name} />
-      </SideBarItem>
+      <SideBarNavItem key={`sidebar-item-${index}`} to={`career/${item._id}`}>
+        <SideBarItem name={item.name} />
+      </SideBarNavItem>
+
+  const renderSectionItem = () => {
+    // selected.
+  }
 
   return (
     <Offcanvas className="sidebar" show={sidebar} onHide={closeSideBar}>
@@ -25,17 +29,17 @@ const SideBar = ({ app, career, closeSideBar, getCareers }) => {
         <Offcanvas.Title><i className="fa-solid fa-chalkboard me-2"></i> Classroomn't</Offcanvas.Title>
       </Offcanvas.Header>
       <Offcanvas.Body>
-        <SideBarItem to="posts">
+        <SideBarNavItem to="posts">
           <div className='d-flex justify-content-center sidebar-item-icon'><i className='fa-solid fa-message'></i></div>
-          <div className='sidebar-item-text'>Posts</div>
-        </SideBarItem>
-        <SideBarItem to="/">
+          <div className='sidebar-item-text'>Posteos</div>
+        </SideBarNavItem>
+        <SideBarNavItem to="/">
           <div className='d-flex justify-content-center sidebar-item-icon'><i className='fa-solid fa-chalkboard-user'></i></div>
-          <div className='sidebar-item-text'>Careers</div>
-        </SideBarItem>
+          <div className='sidebar-item-text'>Carreras</div>
+        </SideBarNavItem>
         <hr />
         {
-          careers &&
+          careers.length > 0 &&
           careers.map(renderItemSideBar)
         }
       </Offcanvas.Body>

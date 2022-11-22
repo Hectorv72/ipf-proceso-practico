@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react'
-import { useState } from 'react'
 import { Tabs, Tab } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import connectRedux from '../../redux/connectRedux'
 import YearTab from './layouts/YearTab'
 
-const Career = ({ career, getCareer, setAppPage }) => {
+const Career = ({ career, getCareer, setAppPage, setAppTitle, resetAppTitle, clearSubject }) => {
   const { career: selected } = career
   const { careerId } = useParams()
 
@@ -14,8 +13,14 @@ const Career = ({ career, getCareer, setAppPage }) => {
   }, [careerId])
 
   useEffect(() => {
+    clearSubject()
     setAppPage('career')
   }, [])
+
+  useEffect(() => {
+    resetAppTitle()
+    selected && setAppTitle(selected.name)
+  }, [selected])
 
   return (
     selected &&
