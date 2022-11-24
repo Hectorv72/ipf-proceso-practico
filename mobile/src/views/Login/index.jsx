@@ -1,27 +1,22 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
+// import { REACT_APP_BACKEND_URL } from '@env'
 import { Input } from '@rneui/themed'
 import { Button } from '@rneui/base'
+import sendLogin from './helpers/sendLogin'
 
 const Login = ({ navigation }) => {
   const [form, setForm] = useState()
+  const [error, setError] = useState()
 
   const handleSetForm = (target, name) => setForm(prev => ({ ...prev, [name]: target.text }))
 
   const handleLogin = async () => {
     try {
-      const url = 'http://192.168.216.180:4000/auth/login'
-      console.log(form)
-      const content = {
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        method: 'POST',
-        body: JSON.stringify(form)
-      }
-      const response = await fetch(url, content)
-      const json = await response.json()
-      response.ok && navigation.navigate('posts')
+      const { success, error } = await sendLogin(form)
+      success && navigation.navigate('posts')
+      error && setError(error)
+      // response.ok && navigation.navigate('posts')
     } catch (error) {
       console.log(error)
     }
@@ -29,9 +24,9 @@ const Login = ({ navigation }) => {
 
   return (
     <View>
-      <Input placeholder='elusuario' onChange={({ nativeEvent: target }) => handleSetForm(target, 'email')} />
-      <Input placeholder='lapasswuor' secureTextEntry onChange={({ nativeEvent: target }) => handleSetForm(target, 'password')} />
-      <Button onPress={handleLogin} >Loguearse papu</Button>
+      <Input placeholder='email' onChange={({ nativeEvent: target }) => handleSetForm(target, 'email')} renderErrorMessage={error.password} />
+      <Input placeholder='password' secureTextEntry onChange={({ nativeEvent: target }) => handleSetForm(target, 'password')} />
+      <Button onPress={handleLogin} >Login</Button>
     </View>
   )
 }
