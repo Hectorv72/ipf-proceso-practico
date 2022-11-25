@@ -1,5 +1,5 @@
 export default async () => {
-  const url = 'http://192.168.216.180:4000/post'
+  const url = `${process.env.REACT_APP_SERVER_URL}/post`
   // const content = {
   //   headers: {
   //     'Content-Type': 'application/json'
