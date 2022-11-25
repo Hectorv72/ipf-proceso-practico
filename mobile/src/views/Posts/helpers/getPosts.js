@@ -8,5 +8,5 @@ export default async () => {
   //   body: JSON.stringify(form)
   // }
   const response = await fetch(url)
-  return (await response.json()).posts
+  return (await response.json()).posts.reverse()
 }
