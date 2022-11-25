@@ -10,8 +10,6 @@ const ModalPost = ({ show, onCloseButton }) => {
   const { token } = useContext(TokenContext)
   const { handleAddPost, handleHideModal } = useContext(PostContext)
   const [form, setForm] = useState({
-    header: '',
-    message: '',
     type: 'aviso'
   })
   const [error, setError] = useState()
@@ -32,6 +30,7 @@ const ModalPost = ({ show, onCloseButton }) => {
         handleAddPost(success.post)
         handleHideModal()
       }
+      console.log(error)
       error && setError(error)
     } catch (error) {
       console.log(error)

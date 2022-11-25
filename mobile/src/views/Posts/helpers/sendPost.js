@@ -14,7 +14,7 @@ export default async (form, token) => {
   if (response.ok) {
     info.success = json
   } else {
-    info.error = json
+    info.error = json.errors
   }
   return info
 }
