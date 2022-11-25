@@ -7,7 +7,7 @@ import ModalPost from './components/ModalPost'
 import PostContext from './contexts/PostContext'
 
 const Posts = () => {
-  const [posts, setPosts] = useState(null)
+  const [posts, setPosts] = useState([])
   const [showModal, setShowModal] = useState(false)
 
   const handleAddPost = (post) => {
@@ -33,18 +33,25 @@ const Posts = () => {
       <View style={styles.container}>
         <ModalPost show={showModal} onCloseButton={handleHideModal} />
         <View><WritePost onTouchCard={handleShowModal} /></View>
-        <ScrollView>
-          {
-            posts &&
-            posts.map(
-              (post, index) => <CardPost key={'post-' + index}
-                header={post.header}
-                message={post.message}
-                username={post.sender.username}
-              />
-            )
-          }
-        </ScrollView>
+        {
+          posts.length > 0
+            ? <ScrollView>
+              {
+                posts &&
+                posts.map(
+                  (post, index) => <CardPost key={'post-' + index}
+                    header={post.header}
+                    message={post.message}
+                    username={post.sender.username}
+                  />
+                )
+              }
+            </ScrollView>
+            : <View>
+              <Text>No hay posts</Text>
+            </View>
+        }
+
       </View>
     </PostContext.Provider>
   )
